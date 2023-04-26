@@ -1,0 +1,31 @@
+specVersion: 0.0.5
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Market
+    network: sepolia
+    source:
+      address: "0xca268c1457BB2efccbA5a3611e6024431B86c2CB"
+      abi: Market
+      startBlock: 3338552
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - ItemBought
+        - ItemPosted
+        - WinnerPicked
+      abis:
+        - name: Market
+          file: Market\abis\Market.json
+      eventHandlers:
+        - event: ItemBought(indexed string,indexed string,address)
+          handler: handleItemBought
+        - event: ItemPosted(indexed address,indexed string,indexed
+            string,string,string,string,uint256)
+          handler: handleItemPosted
+        - event: WinnerPicked(address)
+          handler: handleWinnerPicked
+      file: Market\Market.wasm

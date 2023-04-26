@@ -1,0 +1,23 @@
+type ItemBought @entity(immutable: true) {
+  id: ID!
+  title: String! # string
+  author: String! # string
+  buyer: Bytes! # address
+}
+
+type ItemPosted @entity(immutable: true) {
+  id: ID!
+  owner: Bytes! # address
+  author: String! # string
+  title: String! # string
+  description: String! # string
+  fileType: String! # string
+  ipfsLink: String! # string
+  price: BigInt! # uint256
+
+}
+
+type WinnerPicked @entity(immutable: true) {
+  id: ID!
+  recentWinner: Bytes! # address
+}
